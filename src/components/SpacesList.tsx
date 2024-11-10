@@ -1,14 +1,18 @@
-// src/components/SpacesList.tsx
-
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { getSpaces } from '../api';
 import { Link } from 'react-router-dom';
 import { List, ListItem, ListItemText, Typography, Container } from '@mui/material';
 
-const SpacesList: React.FC = () => {
-  const { data: spaces, isLoading, error } = useQuery({ queryKey: ['spaces'], queryFn: getSpaces });
+type SpaceList = {
+  spaces: {
+    id: number;
+    title: string;
+    spaceId: string;
+  }[];
+  isLoading: boolean;
+  error: Error | null;
+}
 
+const SpacesList: React.FC<SpaceList> = ({ spaces, isLoading, error }) => {
   if (isLoading) return <p>Loading spaces...</p>;
   if (error) return <p>Error loading spaces</p>;
 
@@ -16,11 +20,11 @@ const SpacesList: React.FC = () => {
     <Container maxWidth="sm" style={{ marginTop: '2rem' }}>
       <Typography variant="h5" gutterBottom>Your Spaces</Typography>
       <List>
-        {spaces?.map((space: { id: number; title: string; spaceId: string }) => (
+        {spaces.length > 0 ? spaces?.map((space: { id: number; title: string; spaceId: string }) => (
           <ListItem key={space.spaceId} component={Link} to={`/space/${space.spaceId}`}>
             <ListItemText primary={space.title} secondary={`ID: ${space.spaceId}`} />
           </ListItem>
-        ))}
+        )) : <p>No spaces found</p>}
       </List>
     </Container>
   );

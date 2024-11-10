@@ -8,3 +8,8 @@ export const getSpaces = async () => {
   const response = await api.get("/api/spaces");
   return response.data;
 };
+
+export const createSpace = async (title: string) => {
+  const response = await api.post("/api/spaces", { title });
+  return response.data;
+};
