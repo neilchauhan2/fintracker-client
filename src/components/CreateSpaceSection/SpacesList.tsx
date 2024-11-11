@@ -21,7 +21,7 @@ const SpacesList: React.FC<SpaceList> = ({ spaces, isLoading, error }) => {
       <Typography variant="h5" gutterBottom>Your Spaces</Typography>
       <List>
         {spaces.length > 0 ? spaces?.map((space: { id: number; title: string; spaceId: string }) => (
-          <ListItem key={space.spaceId} component={Link} to={`/space/${space.spaceId}`}>
+          <ListItem key={space.spaceId} component={Link} to={`/spaces/${space.spaceId}`}>
             <ListItemText primary={space.title} secondary={`ID: ${space.spaceId}`} />
           </ListItem>
         )) : <p>No spaces found</p>}

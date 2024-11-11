@@ -13,3 +13,8 @@ export const createSpace = async (title: string) => {
   const response = await api.post("/api/spaces", { title });
   return response.data;
 };
+
+export const fetchTransactions = async (spaceId: string) => {
+  const response = await api.get(`/api/spaces/${spaceId}/transactions`);
+  return response.data;
+};
