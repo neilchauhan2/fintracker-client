@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Container, FormGroup, TextField, Typography } from '@mui/material';
+import { Button, Container, FormGroup, Paper, TextField, Typography } from '@mui/material';
 
 type SpaceFormProps = {
   title: string;
@@ -16,8 +16,8 @@ const SpacesForm: React.FC<SpaceFormProps> = ({ title, handleSubmit, handleChang
   }
 
   return (
-    <Container style={{ marginTop: '2rem' }}>
-      <Typography variant="h5" fontWeight={600} gutterBottom marginY={1}>Create a Space</Typography>
+    <Container style={{ padding: '1rem 2rem 6rem 2rem', width: '100%' }} component={Paper}>
+      <Typography variant="h5" fontWeight={600} gutterBottom marginBottom={1}>Create a Space</Typography>
       <FormGroup>
         <TextField id="outlined-basic" label="Space Title" variant="outlined" style={{ margin: '1rem 0' }} value={title} onChange={handleChange} />
         <Button disabled={isPending} size='medium' variant="contained" color="primary" onClick={handleSubmit}>
