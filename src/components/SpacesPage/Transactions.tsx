@@ -3,7 +3,7 @@ import { Transaction } from '../../types'
 import { DataGrid, GridActionsCellItem, GridColDef } from '@mui/x-data-grid';
 import dayjs from 'dayjs';
 import { Delete, Edit } from '@mui/icons-material';
-import { Button, Container } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import TransactionModal from './TransactionModal';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteTransaction } from '../../api';
@@ -33,7 +33,6 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
 
 
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 100 },
     { field: 'type', headerName: 'Type', width: 150 },
     { field: 'amount', headerName: 'Amount', width: 150, type: 'number' },
     { field: 'category', headerName: 'Category', width: 200 },
@@ -91,7 +90,7 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
   }
 
   return (
-    <Container style={{ height: '50%', width: '100%', marginTop: '2rem' }}>
+    <Box>
       <Button variant="contained" color="primary"
         onClick={handleAddTransaction}
         style={{ marginBottom: '1rem' }}>
@@ -116,7 +115,7 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
         onClose={handleCloseModal}
         transaction={selectedTransaction}
       />
-    </Container>
+    </Box>
   );
 };
 

@@ -44,10 +44,11 @@ const TransactionModal: React.FC<TransactionModalProps> = ({ open, onClose, tran
       }
     ),
     onSuccess: (data) => {
-      console.log("Space created successfully:", data);
+      console.log("Transaction created successfully:", data);
+      queryClient.invalidateQueries({ queryKey: ['fetchTransactions'] });
     },
     onError: (error) => {
-      console.error("Error creating space:", error);
+      console.error("Error creating Transaction:", error);
     }
   });
   const { mutate: editTransaction, isPending: isUpdatePending, error: updateError } = useMutation({
@@ -67,7 +68,7 @@ const TransactionModal: React.FC<TransactionModalProps> = ({ open, onClose, tran
       queryClient.invalidateQueries({ queryKey: ['fetchTransactions'] });
     },
     onError: (error) => {
-      console.error("Error creating space:", error);
+      console.error("Error creating Transaction:", error);
     }
   });
 

@@ -16,3 +16,9 @@ export type TransactionPayload = {
   type: string;
   category: string;
 };
+
+export type LineChartDataType = {
+  income: number;
+  expense: number;
+  date: string;
+};
