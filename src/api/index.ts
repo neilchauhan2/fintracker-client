@@ -42,3 +42,13 @@ export const updateTransaction = async (
   );
   return response.data;
 };
+
+export const deleteTransaction = async (
+  spaceId: string,
+  transactionId: string
+) => {
+  const response = await api.delete(
+    `/api/spaces/${spaceId}/transactions/${transactionId}`
+  );
+  return response.data;
+};

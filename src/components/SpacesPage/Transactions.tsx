@@ -5,6 +5,9 @@ import dayjs from 'dayjs';
 import { Delete, Edit } from '@mui/icons-material';
 import { Button, Container } from '@mui/material';
 import TransactionModal from './TransactionModal';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { deleteTransaction } from '../../api';
+import { useParams } from 'react-router-dom';
 
 type TransactionsProps = {
   transactions: Transaction[]
@@ -13,6 +16,22 @@ type TransactionsProps = {
 const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
+  const { spaceId } = useParams();
+  const queryClient = useQueryClient();
+
+  const { mutate: removeTransaction, isPending: isDeletePending, error: deleteError } = useMutation({
+    mutationFn: (id: string) => deleteTransaction(spaceId || '', id),
+    onSuccess: (data) => {
+      console.log("Transaction updated successfully:", data);
+      queryClient.invalidateQueries({ queryKey: ['fetchTransactions'] });
+    },
+    onError: (error) => {
+      console.error("Error creating space:", error);
+    }
+  });
+
+
+
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 100 },
     { field: 'type', headerName: 'Type', width: 150 },
@@ -50,7 +69,7 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
   };
 
   const handleDelete = async (id: string) => {
-    console.log(id)
+    await removeTransaction(id);
   };
 
   const handleAddTransaction = async () => {
@@ -63,7 +82,13 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
     setSelectedTransaction(null);
   };
 
+  if (isDeletePending) {
+    return <div>Deleting...</div>
+  }
 
+  if (deleteError) {
+    console.error("Error deleting transaction:", deleteError);
+  }
 
   return (
     <Container style={{ height: '50%', width: '100%', marginTop: '2rem' }}>
