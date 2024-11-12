@@ -41,3 +41,18 @@ export function getPieChartData(
     value,
   }));
 }
+
+export const getTotalTransactions = (transactions: Transaction[]) =>
+  transactions.length;
+export const getTotalIncome = (transactions: Transaction[]) =>
+  Math.floor(
+    transactions
+      .filter((t) => t.type.trim().toLocaleLowerCase() === "income")
+      .reduce((sum, t) => sum + t.amount, 0)
+  );
+export const getTotalExpenses = (transactions: Transaction[]) =>
+  Math.floor(
+    transactions
+      .filter((t) => t.type.trim().toLocaleLowerCase() === "expense")
+      .reduce((sum, t) => sum + t.amount, 0)
+  );

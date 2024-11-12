@@ -3,7 +3,7 @@ import { Transaction } from '../../types'
 import { DataGrid, GridActionsCellItem, GridColDef } from '@mui/x-data-grid';
 import dayjs from 'dayjs';
 import { Delete, Edit } from '@mui/icons-material';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Grid2, Typography } from '@mui/material';
 import TransactionModal from './TransactionModal';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteTransaction } from '../../api';
@@ -90,12 +90,19 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
   }
 
   return (
-    <Box>
-      <Button variant="contained" color="primary"
-        onClick={handleAddTransaction}
-        style={{ marginBottom: '1rem' }}>
-        Add Transaction
-      </Button>
+    <Box width='100%' height='100%'>
+      <Grid2 justifyContent='space-between' container>
+        <Grid2>
+          <Typography variant="h6" gutterBottom>Transactions</Typography>
+        </Grid2>
+        <Grid2>
+          <Button variant="contained" color="primary"
+            onClick={handleAddTransaction}
+            style={{ marginBottom: '1rem' }}>
+            Add Transaction
+          </Button>
+        </Grid2>
+      </Grid2>
       <DataGrid
         rows={transactions}
         columns={columns}
@@ -103,11 +110,11 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 10,
+              pageSize: 4,
             },
           },
         }}
-        pageSizeOptions={[10]}
+        pageSizeOptions={[4]}
         getRowId={(row) => row.id}
       />
       <TransactionModal
