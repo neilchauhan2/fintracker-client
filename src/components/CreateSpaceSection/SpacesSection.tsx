@@ -38,10 +38,10 @@ const SpacesSection: React.FC = () => {
   return (
     <Container maxWidth="xl" style={{ marginTop: '2rem' }}>
       <Grid container spacing={2}>
-        <Grid size={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <SpacesForm title={title} handleSubmit={handleSubmit} handleChange={handleChange} isPending={isPending} error={createSpaceError} />
         </Grid>
-        <Grid size={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <SpacesList spaces={spaces} isLoading={isLoading} error={spacesListError} />
         </Grid>
       </Grid>

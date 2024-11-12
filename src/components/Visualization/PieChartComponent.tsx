@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { PieChart, Pie, Cell } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import { PieChartDataType } from '../../types';
 
 type PieChartProps = {
@@ -12,22 +12,27 @@ const PieChartComponent: React.FC<PieChartProps> = ({ data }) => {
     console.log(data);
   }, [data]);
   return (
-    <PieChart
-      width={600}
-      height={400}
-    >
-      <Pie
-        data={data}
-        dataKey='value'
-        label={
-          (item) => {
-            return `${item.name}: ${item.value}`
-          }}>
-        {data.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}>{entry.name}</Cell>
-        ))}
-      </Pie>
-    </PieChart>
+    <div style={{ width: '100%', height: 400 }}>
+      <ResponsiveContainer width='100%'
+        height='100%'>
+        <PieChart>
+          <Pie
+            data={data}
+            dataKey='value'
+            style={{
+              fontSize: '12px'
+            }}
+            label={
+              (item) => {
+                return `${item.name}: ${item.value}`
+              }}>
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}>{entry.name}</Cell>
+            ))}
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
   )
 }
 

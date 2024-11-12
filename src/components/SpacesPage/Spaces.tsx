@@ -33,18 +33,17 @@ const Spaces: React.FC = () => {
   };
 
   return (
-    <Box sx={{ padding: 1 }}>
-      {/* Charts Section */}
+    <Box sx={{ padding: { xs: 1, sm: 2, md: 3 } }}>
       <Grid container spacing={3}>
-        <Grid size={10}>
-          <Paper elevation={3} sx={{ paddingX: 3, paddingY: 1 }}>
+        <Grid size={{ xs: 12, sm: 12, md: 12, lg: 10 }}>
+          <Paper elevation={3} sx={{ padding: 3 }}>
             <Transactions transactions={transactions || []} />
           </Paper>
         </Grid>
-        <Grid size={2}>
+        <Grid size={{ xs: 12, sm: 12, md: 12, lg: 2 }}>
           {getKPIs().map((kpi, index) => (
-            <Box sx={{ marginBottom: 4.5 }} key={index}>
-              <Paper elevation={3} sx={{ padding: 2, textAlign: 'center' }}>
+            <Box sx={{ marginBottom: { xs: 2, sm: 3, md: 4 } }} key={index}>
+              <Paper elevation={3} sx={{ padding: { xs: 1, sm: 2, md: 3 }, textAlign: 'center' }}>
                 <KpiCard title={kpi.title} value={kpi.value} />
               </Paper>
             </Box>
@@ -52,15 +51,14 @@ const Spaces: React.FC = () => {
         </Grid>
       </Grid>
 
-      {/* Transactions Table Section */}
-      <Grid container spacing={3} sx={{ marginTop: 1 }}>
-        <Grid size={6}>
+      <Grid container spacing={3} sx={{ marginTop: 3 }}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Paper elevation={3} sx={{ padding: 3 }}>
             <Typography variant="h6" gutterBottom>Category Breakdown</Typography>
             <PieChartComponent data={getPieChartData(transactions || [])} />
           </Paper>
         </Grid>
-        <Grid size={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Paper elevation={3} sx={{ padding: 3 }}>
             <Typography variant="h6" gutterBottom>Transactions Over Time</Typography>
             <LineChartComponent data={getLineChartData(transactions || [])} />
@@ -68,25 +66,6 @@ const Spaces: React.FC = () => {
         </Grid>
       </Grid>
     </Box>
-    // <Box>
-    //   <Grid container justifyContent={'center'} spacing={1}>
-    //     {
-    //       getKPIs().map((kpi, index) => <Grid key={index} size={2}><KpiCard title={kpi.title} value={kpi.value} /></Grid>)
-    //     }
-    //     <Grid size={6}>
-    //       <PieChartComponent data={getPieChartData(transactions || [])} />
-    //     </Grid>
-    //   </Grid>
-    //   <Grid container spacing={2}>
-    //     <Grid size={6}>
-    //       <Transactions transactions={transactions || []} />
-    //     </Grid>
-    //     <Grid size={6}>
-    //       <LineChartComponent data={getLineChartData(transactions || [])} />
-    //     </Grid>
-    //   </Grid>
-
-    // </Box>
   )
 }
 
