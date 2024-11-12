@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { LineChartDataType, Transaction } from "../types";
+import { LineChartDataType, PieChartDataType, Transaction } from "../types";
 
 export function getLineChartData(
   transactions: Transaction[]
@@ -18,4 +18,26 @@ export function getLineChartData(
     };
   });
   return data;
+}
+
+export function getPieChartData(
+  transactions: Transaction[]
+): PieChartDataType[] {
+  const categories = new Map<string, number>();
+  transactions.forEach((transaction) => {
+    if (categories.has(transaction.category)) {
+      const curValue = categories.get(transaction.category) || 0;
+      categories.set(
+        transaction.category,
+        Math.floor(curValue + transaction.amount)
+      );
+    } else {
+      categories.set(transaction.category, transaction.amount);
+    }
+  });
+
+  return Array.from(categories).map(([key, value]) => ({
+    name: key,
+    value,
+  }));
 }

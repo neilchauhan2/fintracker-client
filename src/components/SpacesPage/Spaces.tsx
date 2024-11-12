@@ -5,8 +5,9 @@ import { fetchTransactions } from '../../api';
 import { Transaction } from '../../types';
 import Transactions from './Transactions';
 import { Box, Grid2 as Grid } from '@mui/material';
-import LineChart from '../Visualization/LineChart';
-import { getLineChartData } from '../../utils';
+import LineChartComponent from '../Visualization/LineChartComponent';
+import { getLineChartData, getPieChartData } from '../../utils';
+import PieChartComponent from '../Visualization/PieChartComponent';
 
 const Spaces: React.FC = () => {
   const { spaceId } = useParams();
@@ -24,9 +25,10 @@ const Spaces: React.FC = () => {
           <Transactions transactions={transactions || []} />
         </Grid>
         <Grid size={6}>
-          <LineChart data={getLineChartData(transactions || [])} />
+          <LineChartComponent data={getLineChartData(transactions || [])} />
         </Grid>
       </Grid>
+      <PieChartComponent data={getPieChartData(transactions || [])} />
     </Box>
   )
 }

@@ -22,3 +22,8 @@ export type LineChartDataType = {
   expense: number;
   date: string;
 };
+
+export type PieChartDataType = {
+  name: string;
+  value: number;
+};
