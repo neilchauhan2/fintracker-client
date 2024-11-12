@@ -9,6 +9,7 @@ import LineChartComponent from '../Visualization/LineChartComponent';
 import { getLineChartData, getPieChartData, getTotalExpenses, getTotalIncome, getTotalTransactions } from '../../utils';
 import PieChartComponent from '../Visualization/PieChartComponent';
 import KpiCard from '../Visualization/KpiCard';
+import blob from '../../assets/blob.svg';
 
 const Spaces: React.FC = () => {
   const { spaceId } = useParams();
@@ -33,7 +34,14 @@ const Spaces: React.FC = () => {
   };
 
   return (
-    <Box sx={{ padding: { xs: 1, sm: 2, md: 3 } }}>
+    <Box sx={{
+      padding: { xs: 1, sm: 2, md: 3 }, minHeight: '100vh',
+      backgroundImage: `url(${blob})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      overflow: 'hidden',
+    }}>
       <Grid container spacing={3}>
         <Grid size={{ xs: 12, sm: 12, md: 12, lg: 10 }}>
           <Paper elevation={3} sx={{ padding: 3 }}>

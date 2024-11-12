@@ -4,6 +4,7 @@ import { createSpace, getSpaces } from '../../api';
 import { Container, Grid2 as Grid } from '@mui/material';
 import SpacesList from './SpacesList';
 import SpacesForm from './SpacesForm';
+import spacesBlob from '../../assets/blob.svg';
 
 const SpacesSection: React.FC = () => {
   const [title, setTitle] = useState('');
@@ -36,7 +37,15 @@ const SpacesSection: React.FC = () => {
 
 
   return (
-    <Container maxWidth="xl" style={{ marginTop: '2rem' }}>
+    <Container maxWidth="xl" style={{ marginTop: '2rem' }} sx={{
+      minHeight: '100vh',
+      backgroundImage: `url(${spacesBlob})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      padding: { xs: '1rem', sm: '2rem', md: '3rem' },
+      overflow: 'hidden',
+    }}>
       <Grid container spacing={2}>
         <Grid size={{ xs: 12, md: 6 }}>
           <SpacesForm title={title} handleSubmit={handleSubmit} handleChange={handleChange} isPending={isPending} error={createSpaceError} />

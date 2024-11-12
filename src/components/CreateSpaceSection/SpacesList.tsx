@@ -21,7 +21,7 @@ const SpacesList: React.FC<SpaceList> = ({ spaces, isLoading, error }) => {
     <Container>
       <Typography variant="h5" gutterBottom sx={{
         color: '#1D1D1F',
-        fontWeight: 600,
+        fontWeight: 500,
       }}>Your Spaces</Typography>
       <List>
         {spaces.length > 0 ? spaces?.map((space: { id: number; title: string; spaceId: string }) => (
