@@ -14,6 +14,7 @@ const Spaces: React.FC = () => {
     console.error("Error fetching transactions:", error);
   }
 
+
   return (
     <div>
       <Transactions transactions={transactions || []} />

@@ -9,3 +9,10 @@ export type Transaction = {
   createdAt: string;
   updatedAt: string;
 };
+export type TransactionPayload = {
+  description: string;
+  amount: number | null;
+  date: string;
+  type: string;
+  category: string;
+};

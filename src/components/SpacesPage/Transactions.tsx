@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Transaction } from '../../types'
 import { DataGrid, GridActionsCellItem, GridColDef } from '@mui/x-data-grid';
 import dayjs from 'dayjs';
 import { Delete, Edit } from '@mui/icons-material';
 import { Button, Container } from '@mui/material';
+import TransactionModal from './TransactionModal';
 
 type TransactionsProps = {
   transactions: Transaction[]
 }
 
 const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 100 },
     { field: 'type', headerName: 'Type', width: 150 },
@@ -17,7 +20,7 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
     { field: 'category', headerName: 'Category', width: 200 },
     {
       field: 'date', headerName: 'Date', width: 180, type: 'dateTime',
-      valueFormatter: (value) => dayjs(value).format('YYYY/MM/DD'),
+      valueFormatter: (value) => dayjs(value).format('DD/MM/YYYY'),
       editable: true,
     },
     { field: 'description', headerName: 'Description', width: 250 },
@@ -41,9 +44,9 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
     },
   ];
 
-  // CRUD operations
   const handleEdit = (transaction: Transaction) => {
-    console.log("Edit transaction:", transaction);
+    setSelectedTransaction(transaction);
+    setModalOpen(true);
   };
 
   const handleDelete = async (id: string) => {
@@ -51,8 +54,16 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
   };
 
   const handleAddTransaction = async () => {
-    console.log('Add Transaction')
+    setModalOpen(true);
+    setSelectedTransaction(null);
   };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedTransaction(null);
+  };
+
+
 
   return (
     <Container style={{ height: '50%', width: '100%', marginTop: '2rem' }}>
@@ -74,6 +85,11 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
         }}
         pageSizeOptions={[10]}
         getRowId={(row) => row.id}
+      />
+      <TransactionModal
+        open={modalOpen}
+        onClose={handleCloseModal}
+        transaction={selectedTransaction}
       />
     </Container>
   );
