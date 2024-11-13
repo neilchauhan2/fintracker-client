@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
       <Grid container spacing={2} justifyContent='space-between' alignItems='center'>
         <Grid>
           <Grid container justifyContent='center' spacing={1} component={Link} to={'/'} style={{ textDecoration: 'none' }}>
-            <Grid>
+            <Grid padding={0}>
               <img src={logo} alt="logo" height='30px' width='30px' />
             </Grid>
             <Grid>
