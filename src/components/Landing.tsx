@@ -15,7 +15,7 @@ const LandingPage: React.FC = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        backgroundImage: `url(${blob})`,
+        backgroundImage: 'url(/blob.svg)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center',

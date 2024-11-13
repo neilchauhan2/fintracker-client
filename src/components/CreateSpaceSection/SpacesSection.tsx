@@ -39,7 +39,7 @@ const SpacesSection: React.FC = () => {
   return (
     <Container maxWidth="xl" style={{ marginTop: '2rem' }} sx={{
       minHeight: '100vh',
-      backgroundImage: `url(${spacesBlob})`,
+      backgroundImage: 'url(/blob.svg)',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
       backgroundPosition: 'center',

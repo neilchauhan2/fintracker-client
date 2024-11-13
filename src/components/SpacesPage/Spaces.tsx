@@ -36,7 +36,7 @@ const Spaces: React.FC = () => {
   return (
     <Box sx={{
       padding: { xs: 1, sm: 2, md: 3 }, minHeight: '100vh',
-      backgroundImage: `url(${blob})`,
+      backgroundImage: 'url(/blob.svg)',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
