@@ -2,6 +2,8 @@
 
 This is the frontend of the FinTracker application, a personal finance tracker that helps users manage their income, expenses, and visualize financial data. Built with React and Material-UI, the client interfaces with the backend API to store and retrieve user financial data.
 
+![screely-1731442821829](https://github.com/user-attachments/assets/e7cfee0d-131f-4a16-8be9-59af339adb40)
+
 ## Getting Started
 
 To set up and run this project locally, follow these steps:
