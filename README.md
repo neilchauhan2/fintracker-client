@@ -43,3 +43,14 @@ To set up and run this project locally, follow these steps:
 - `src/utils/`: Utility functions for data transformation, including data formatting and chart preparation.
 - `src/types/`: This folder contains Type definitions for the common data types used in the project.
 - `src/providers/`: This folder contains Provider for the REact Query Client, which is used for data fetching.
+
+## Technologies Used
+
+- **React** with **TypeScript**
+- **Material UI (MUI)** for UI components
+- **MUI Data Grid** for data table
+- **React Query** for API data fetching and caching
+- **Recharts** for data visualization
+- **Axios** for API requests
+- **Day.js** for date manipulation
+
