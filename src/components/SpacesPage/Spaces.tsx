@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { fetchTransactions } from '../../api';
 import { Transaction } from '../../types';
 import Transactions from './Transactions';
-import { Box, Grid2 as Grid, Paper, Typography } from '@mui/material';
+import { Box, Container, Grid2 as Grid, Paper, Typography } from '@mui/material';
 import LineChartComponent from '../Visualization/LineChartComponent';
 import { getLineChartData, getPieChartData, getTotalExpenses, getTotalIncome, getTotalTransactions } from '../../utils';
 import PieChartComponent from '../Visualization/PieChartComponent';
@@ -45,7 +45,11 @@ const Spaces: React.FC = () => {
       <Grid container spacing={3}>
         <Grid size={{ xs: 12, sm: 12, md: 12, lg: 10 }}>
           <Paper elevation={3} sx={{ padding: 3 }}>
-            <Transactions transactions={transactions || []} />
+            {transactions && transactions?.length > 0
+              ? <Transactions transactions={transactions || []} />
+              : <Container sx={{ marginTop: '1rem', width: '100%', height: '350px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Typography variant="h6" sx={{ color: '#8E8E93' }}>No Transactions Yet...</Typography>
+              </Container>}
           </Paper>
         </Grid>
         <Grid size={{ xs: 12, sm: 12, md: 12, lg: 2 }}>
@@ -63,13 +67,23 @@ const Spaces: React.FC = () => {
         <Grid size={{ xs: 12, md: 6 }}>
           <Paper elevation={3} sx={{ padding: 3 }}>
             <Typography variant="h6" gutterBottom>Category Breakdown</Typography>
-            <PieChartComponent data={getPieChartData(transactions || [])} />
+            {transactions && transactions.length > 0 ?
+              <PieChartComponent data={getPieChartData(transactions || [])} />
+              : <Container sx={{ width: '100%', height: '400px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Typography variant="h6" sx={{ color: '#8E8E93' }}>No Data Yet...</Typography>
+              </Container>
+            }
           </Paper>
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
           <Paper elevation={3} sx={{ padding: 3 }}>
             <Typography variant="h6" gutterBottom>Transactions Over Time</Typography>
-            <LineChartComponent data={getLineChartData(transactions || [])} />
+            {transactions && transactions.length > 0 ?
+              <LineChartComponent data={getLineChartData(transactions || [])} />
+              : <Container sx={{ width: '100%', height: '400px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Typography variant="h6" sx={{ color: '#8E8E93' }}>No Data Yet...</Typography>
+              </Container>
+            }
           </Paper>
         </Grid>
       </Grid>
