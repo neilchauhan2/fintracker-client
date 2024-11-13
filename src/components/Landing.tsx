@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Typography, Box, Grid2 as Grid } from '@mui/material';
 import { useTheme, useMediaQuery } from '@mui/material';
 import landing from '../assets/landing.png';
-import blob from '../assets/blob.svg';
+import blob from '../../public/blob.svg';
 import { useNavigate } from 'react-router-dom';
 
 const LandingPage: React.FC = () => {

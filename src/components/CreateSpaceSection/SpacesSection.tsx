@@ -4,7 +4,7 @@ import { createSpace, getSpaces } from '../../api';
 import { Container, Grid2 as Grid } from '@mui/material';
 import SpacesList from './SpacesList';
 import SpacesForm from './SpacesForm';
-import spacesBlob from '../../assets/blob.svg';
+import spacesBlob from '../../../public/blob.svg';
 
 const SpacesSection: React.FC = () => {
   const [title, setTitle] = useState('');

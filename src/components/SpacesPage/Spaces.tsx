@@ -9,7 +9,7 @@ import LineChartComponent from '../Visualization/LineChartComponent';
 import { getLineChartData, getPieChartData, getTotalExpenses, getTotalIncome, getTotalTransactions } from '../../utils';
 import PieChartComponent from '../Visualization/PieChartComponent';
 import KpiCard from '../Visualization/KpiCard';
-import blob from '../../assets/blob.svg';
+import blob from '../../../public/blob.svg';
 
 const Spaces: React.FC = () => {
   const { spaceId } = useParams();
